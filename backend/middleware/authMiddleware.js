@@ -23,15 +23,15 @@ const protect = async (req, res, next) => {
         return res.status(401).json({ message: 'No se encontró el usuario, no autorizado' });
       }
 
-      next();
+      return next();
     } catch (error) {
       console.error(error);
-      res.status(401).json({ message: 'No autorizado, token inválido o vencido' });
+      return res.status(401).json({ message: 'No autorizado, token inválido o vencido' });
     }
   }
 
   if (!token) {
-    res.status(401).json({ message: 'No autorizado, falta el token' });
+    return res.status(401).json({ message: 'No autorizado, falta el token' });
   }
 };
 

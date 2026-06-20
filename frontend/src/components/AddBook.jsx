@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, BookOpen, Key, Hash, FileText, Bookmark, Calendar } from 'lucide-react';
+import { ArrowLeft, BookOpen, Key, Hash, FileText, Bookmark, Calendar, User } from 'lucide-react';
 import api from '../services/api';
 import { useToast } from '../App';
 

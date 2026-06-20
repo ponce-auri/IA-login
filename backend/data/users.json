@@ -7,5 +7,14 @@
     "isVerified": true,
     "createdAt": "2026-06-19T05:46:41.146Z",
     "updatedAt": "2026-06-20T06:21:31.632Z"
+  },
+  {
+    "_id": "224beng",
+    "name": "jesus perez",
+    "email": "jesus.p@gmail.com",
+    "password": "$2b$10$Buvr7yw1Pn63Y8qYrxQyIulo0EYgZ9zZJtM6jEYwJPdeKVZJJ8xS6",
+    "isVerified": true,
+    "createdAt": "2026-06-20T19:56:57.963Z",
+    "updatedAt": "2026-06-20T19:57:06.892Z"
   }
 ]

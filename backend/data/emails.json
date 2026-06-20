@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "_id": "umzbb6n",
+    "to": "jesus.p@gmail.com",
+    "subject": "Verifica tu cuenta",
+    "body": "Hola jesus perez, haz clic en el siguiente enlace para verificar tu cuenta.",
+    "actionUrl": "/verify/5ed1431744818d85ddd5a2f5b70d9afe1a18ebea55a5c2695a113faeb2a54f61",
+    "actionText": "Verificar Cuenta",
+    "createdAt": "2026-06-20T19:56:57.968Z",
+    "updatedAt": "2026-06-20T19:56:57.968Z"
+  }
+]
