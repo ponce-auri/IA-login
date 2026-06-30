@@ -131,8 +131,10 @@ export default function App() {
           const response = await api.get('/auth/me');
           setUser(response.data);
         } catch (error) {
-          console.error('Failed to load user profile on launch', error);
-          localStorage.removeItem('token');
+          console.error('Token inválido o vencido al arrancar, limpiando sesión...', error);
+          // Limpiar TODO localStorage para garantizar estado limpio
+          localStorage.clear();
+          setUser(null);
         }
       }
       setLoading(false);
@@ -172,9 +174,70 @@ export default function App() {
       <AuthContext.Provider value={{ user, loading, login, logout, updateUserInfo }}>
         <Router>
           <div className="app-container">
-            {/* Glowing background shapes */}
-            <div className="bg-glow-orb orb-top-left"></div>
-            <div className="bg-glow-orb orb-bottom-right"></div>
+            {/* Animated Library Background */}
+            <div className="library-bg-animation">
+              <div className="bg-glow-orb orb-top-left"></div>
+              <div className="bg-glow-orb orb-bottom-right"></div>
+              
+              {/* SVG Floating Books and Pages */}
+              <div className="floating-book book-1">
+                <svg viewBox="0 0 24 24" width="100%" height="100%" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                </svg>
+              </div>
+              <div className="floating-book book-2">
+                <svg viewBox="0 0 24 24" width="100%" height="100%" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                </svg>
+              </div>
+              <div className="floating-book book-3">
+                <svg viewBox="0 0 24 24" width="100%" height="100%" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+                </svg>
+              </div>
+              <div className="floating-book book-4">
+                <svg viewBox="0 0 24 24" width="100%" height="100%" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                </svg>
+              </div>
+              <div className="floating-book book-5">
+                <svg viewBox="0 0 24 24" width="100%" height="100%" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                </svg>
+              </div>
+              <div className="floating-book book-6">
+                <svg viewBox="0 0 24 24" width="100%" height="100%" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+                </svg>
+              </div>
+              <div className="floating-book book-7">
+                <svg viewBox="0 0 24 24" width="100%" height="100%" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                </svg>
+              </div>
+              <div className="floating-book book-8">
+                <svg viewBox="0 0 24 24" width="100%" height="100%" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                </svg>
+              </div>
+              <div className="floating-book book-9">
+                <svg viewBox="0 0 24 24" width="100%" height="100%" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+                </svg>
+              </div>
+              <div className="floating-book book-10">
+                <svg viewBox="0 0 24 24" width="100%" height="100%" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                </svg>
+              </div>
+            </div>
 
             {/* Application Routes */}
             <Routes>

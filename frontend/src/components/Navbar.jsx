@@ -22,7 +22,10 @@ export default function Navbar({ toggleSidebar }) {
             #sidebar-toggle-btn { display: inline-flex !important; }
           }
         `}} />
-        <h2 style={{ fontSize: '1.25rem', fontWeight: 600 }} className="gradient-text">Sistema de Biblioteca</h2>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <h2 style={{ fontSize: '1.1rem', fontWeight: 700, lineHeight: 1.2 }} className="gradient-text">Biblioteca Ruta Literaria</h2>
+          <span style={{ fontSize: '0.7rem', color: 'var(--primary)', fontWeight: 500, letterSpacing: '0.03em' }}>El camino del libro</span>
+        </div>
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>

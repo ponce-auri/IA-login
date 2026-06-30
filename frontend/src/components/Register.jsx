@@ -84,9 +84,25 @@ export default function Register() {
         </div>
 
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <h2 className="gradient-text" style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>
-            Crear Cuenta
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.75rem' }}>
+            <div style={{
+              width: '52px', height: '52px', borderRadius: '12px',
+              background: 'linear-gradient(135deg, var(--primary) 0%, hsl(230, 80%, 50%) 100%)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: '0 0 20px var(--primary-glow)',
+            }}>
+              <svg viewBox="0 0 24 24" width="26" height="26" stroke="white" strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+              </svg>
+            </div>
+          </div>
+          <h2 className="gradient-text" style={{ fontSize: '1.6rem', marginBottom: '0.2rem', fontWeight: 800 }}>
+            Biblioteca Ruta Literaria
           </h2>
+          <p style={{ color: 'var(--primary)', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.04em', marginBottom: '0.5rem' }}>
+            El camino del libro
+          </p>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
             Regístrate para obtener acceso instantáneo
           </p>

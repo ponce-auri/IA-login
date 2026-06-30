@@ -79,13 +79,21 @@ const MockEmail = {
   },
   
   find: () => {
-    return {
-      sort: (criteria) => {
-        const emails = readEmails();
-        // criteria is { createdAt: -1 }
-        return emails.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-      }
+    const execute = () => {
+      return readEmails();
     };
+    const queryObj = {
+      sort: function(criteria) {
+        const sorted = execute().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        return {
+          then: (onResolve) => Promise.resolve(sorted).then(onResolve),
+          catch: (onReject) => Promise.resolve(sorted).catch(onReject)
+        };
+      },
+      then: (onResolve) => Promise.resolve(execute()).then(onResolve),
+      catch: (onReject) => Promise.resolve(execute()).catch(onReject)
+    };
+    return queryObj;
   },
 
   deleteMany: async (query) => {

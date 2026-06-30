@@ -132,31 +132,61 @@ const wrapUserInstance = (u) => {
 };
 
 const MockUser = {
-  findOne: async (query) => {
-    const users = readUsers();
-    const found = users.find(u => {
-      for (let key in query) {
-        if (key === 'resetPasswordExpires') {
-          // Handler for: resetPasswordExpires: { $gt: Date.now() }
-          const expiresVal = query[key].$gt;
-          if (!u.resetPasswordExpires || new Date(u.resetPasswordExpires) <= new Date(expiresVal)) {
+  findOne: (query) => {
+    const execute = async () => {
+      const users = readUsers();
+      const found = users.find(u => {
+        for (let key in query) {
+          if (key === 'resetPasswordExpires') {
+            // Handler for: resetPasswordExpires: { $gt: Date.now() }
+            const expiresVal = query[key].$gt;
+            if (!u.resetPasswordExpires || new Date(u.resetPasswordExpires) <= new Date(expiresVal)) {
+              return false;
+            }
+          } else if (key === 'email') {
+            if (u.email.toLowerCase() !== query.email.toLowerCase()) return false;
+          } else if (u[key] !== query[key]) {
             return false;
           }
-        } else if (key === 'email') {
-          if (u.email.toLowerCase() !== query.email.toLowerCase()) return false;
-        } else if (u[key] !== query[key]) {
-          return false;
         }
+        return true;
+      });
+      return wrapUserInstance(found);
+    };
+
+    const queryObj = {
+      select: function(fields) {
+        return this;
+      },
+      then: function(onResolve) {
+        return execute().then(onResolve);
+      },
+      catch: function(onReject) {
+        return execute().catch(onReject);
       }
-      return true;
-    });
-    return wrapUserInstance(found);
+    };
+    return queryObj;
   },
 
-  findById: async (id) => {
-    const users = readUsers();
-    const found = users.find(u => u._id === id.toString());
-    return wrapUserInstance(found);
+  findById: (id) => {
+    const execute = async () => {
+      const users = readUsers();
+      const found = users.find(u => u._id === id.toString());
+      return wrapUserInstance(found);
+    };
+
+    const queryObj = {
+      select: function(fields) {
+        return this;
+      },
+      then: function(onResolve) {
+        return execute().then(onResolve);
+      },
+      catch: function(onReject) {
+        return execute().catch(onReject);
+      }
+    };
+    return queryObj;
   },
 
   create: async (data) => {

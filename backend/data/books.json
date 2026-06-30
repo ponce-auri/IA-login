@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "dox4n97",
+    "code": "001",
+    "title": "Con la misma herradura",
+    "author": "Ramon A Amador",
+    "category": "Novela historica",
+    "publisher": "Editorial Guaymuras",
+    "year": 1999,
+    "isbn": "978-99926-15-18-8",
+    "stock": 1,
+    "description": "Novela historica colonizacion de Honduras.",
+    "image": "https://www.ramon-amaya-amador.com/images/stories/portadas/23p_herradura_2017.jpg",
+    "createdAt": "2026-06-24T04:56:16.436Z",
+    "updatedAt": "2026-06-24T04:58:38.873Z"
+  },
+  {
+    "_id": "cl5f0fn",
+    "code": "002",
+    "title": "Prision verde",
+    "author": "Ramon A Amador",
+    "category": "Novela",
+    "publisher": "Editorial Guaymuras",
+    "year": 1945,
+    "isbn": "978-99926-633-8-7",
+    "stock": 1,
+    "description": "libro",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAIxs7X7DldxxWSmLJkEOSLHNBwNIK5PvkS9fKcEjqWw&s=10",
+    "createdAt": "2026-06-25T01:05:45.410Z",
+    "updatedAt": "2026-06-25T01:06:32.223Z"
+  }
+]

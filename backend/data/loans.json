@@ -1,0 +1,22 @@
+[
+  {
+    "_id": "8o85az2",
+    "readerId": "szcwdmd",
+    "bookId": "dox4n97",
+    "loanDate": "2026-06-24T04:58:38.865Z",
+    "dueDate": "2026-07-08T04:58:38.865Z",
+    "status": "Prestado",
+    "createdAt": "2026-06-24T04:58:38.867Z",
+    "updatedAt": "2026-06-24T04:58:38.867Z"
+  },
+  {
+    "_id": "9f4myd6",
+    "readerId": "szcwdmd",
+    "bookId": "cl5f0fn",
+    "loanDate": "2026-06-25T01:06:32.209Z",
+    "dueDate": "2026-07-09T01:06:32.209Z",
+    "status": "Prestado",
+    "createdAt": "2026-06-25T01:06:32.211Z",
+    "updatedAt": "2026-06-25T01:06:32.211Z"
+  }
+]

@@ -3,18 +3,45 @@
     "_id": "sx7g4to",
     "name": "lucio ramirez",
     "email": "lucio.r@gmail.com",
-    "password": "$2b$10$.pTIPZgrTne2uOFbkuTaDua7tkfgy7CuY5Vw2JEyP4DD9usNd5.ES",
+    "password": "$2b$10$CD.u1ILmkhO4126iWzJe6.iIgrKfLEbyVUG9.IMgKcfx/v12bN2Y6",
     "isVerified": true,
     "createdAt": "2026-06-19T05:46:41.146Z",
-    "updatedAt": "2026-06-20T06:21:31.632Z"
+    "updatedAt": "2026-06-24T04:44:54.021Z"
   },
   {
     "_id": "224beng",
     "name": "jesus perez",
     "email": "jesus.p@gmail.com",
-    "password": "$2b$10$Buvr7yw1Pn63Y8qYrxQyIulo0EYgZ9zZJtM6jEYwJPdeKVZJJ8xS6",
+    "password": "$2b$10$9jNRvhZHOrJSFdMtOBfK6ekp0qvMoPHLEjc7Uf/Zzfc9tOq3tST3W",
     "isVerified": true,
     "createdAt": "2026-06-20T19:56:57.963Z",
-    "updatedAt": "2026-06-20T19:57:06.892Z"
+    "updatedAt": "2026-06-25T01:08:46.808Z"
+  },
+  {
+    "_id": "yzuuinj",
+    "name": "Esvin Ponce",
+    "email": "ponceesvin@gmail.com",
+    "password": "$2b$10$48f93d2qwhtuQLjT9zhcR.YBNes7AIthqRhdrzkZ7ErQZd19W.4MO",
+    "isVerified": true,
+    "createdAt": "2026-06-23T05:39:47.065Z",
+    "updatedAt": "2026-06-23T05:39:55.345Z"
+  },
+  {
+    "_id": "5cebxyj",
+    "name": "Litzie Leiva",
+    "email": "litzieleiva@gmail.com",
+    "password": "$2b$10$0SXEvigWnDouCL3QrB1OIOSjY/qWh.12klcdSxSs.y4NwI2HjsU06",
+    "isVerified": true,
+    "createdAt": "2026-06-23T06:07:38.432Z",
+    "updatedAt": "2026-06-23T06:07:50.121Z"
+  },
+  {
+    "_id": "w18efwa",
+    "name": "Pedro",
+    "email": "pedro.p@gmail.com",
+    "password": "$2b$10$5Zs6x163lFvElAByKUj2HuwiLJV.ncQoeMe.yZ85N6HNTt3xFfNwy",
+    "isVerified": true,
+    "createdAt": "2026-06-25T01:10:33.970Z",
+    "updatedAt": "2026-06-25T01:10:44.272Z"
   }
 ]

@@ -1,0 +1,20 @@
+[
+  {
+    "_id": "szcwdmd",
+    "name": "Lucia Mejia",
+    "email": "lucia.m@gmail.com",
+    "phone": "87543878",
+    "address": "Unah-vs",
+    "createdAt": "2026-06-24T04:58:17.517Z",
+    "updatedAt": "2026-06-24T04:58:17.517Z"
+  },
+  {
+    "_id": "010qb9a",
+    "name": "Juan",
+    "email": "juan.p@gmail.com",
+    "phone": "6584763",
+    "address": "unah",
+    "createdAt": "2026-06-25T01:07:32.584Z",
+    "updatedAt": "2026-06-25T01:07:32.584Z"
+  }
+]

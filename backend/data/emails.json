@@ -1,12 +1,22 @@
 [
   {
-    "_id": "umzbb6n",
+    "_id": "938xcky",
     "to": "jesus.p@gmail.com",
+    "subject": "Restablecer contraseña",
+    "body": "Hola jesus perez, haz clic en el siguiente enlace para restablecer tu contraseña.",
+    "actionUrl": "/reset-password/63265e3b611e2ee9478203286dc7eac1b29d76464d98edebdab901a57ebcc156",
+    "actionText": "Restablecer",
+    "createdAt": "2026-06-25T01:07:58.729Z",
+    "updatedAt": "2026-06-25T01:07:58.729Z"
+  },
+  {
+    "_id": "dyngafu",
+    "to": "pedro.p@gmail.com",
     "subject": "Verifica tu cuenta",
-    "body": "Hola jesus perez, haz clic en el siguiente enlace para verificar tu cuenta.",
-    "actionUrl": "/verify/5ed1431744818d85ddd5a2f5b70d9afe1a18ebea55a5c2695a113faeb2a54f61",
+    "body": "Hola Pedro, haz clic en el siguiente enlace para verificar tu cuenta.",
+    "actionUrl": "/verify/a793e7ff9e62932b90065d29e48cb44952a9b7f4939e386080d4687102b0d22c",
     "actionText": "Verificar Cuenta",
-    "createdAt": "2026-06-20T19:56:57.968Z",
-    "updatedAt": "2026-06-20T19:56:57.968Z"
+    "createdAt": "2026-06-25T01:10:33.974Z",
+    "updatedAt": "2026-06-25T01:10:33.974Z"
   }
 ]

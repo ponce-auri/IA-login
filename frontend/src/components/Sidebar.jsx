@@ -16,10 +16,20 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
 
   return (
     <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
-      <div className="sidebar-brand">
-        <Library className="gradient-text" style={{ color: 'var(--primary)' }} size={28} />
-        <span style={{ fontWeight: 700, fontSize: '1.2rem', letterSpacing: '-0.02em', background: 'linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-          BiblioControl
+      <div className="sidebar-brand" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '4px', padding: '1.25rem 1.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <Library className="gradient-text" style={{ color: 'var(--primary)', flexShrink: 0 }} size={24} />
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <span style={{ fontSize: '0.65rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', lineHeight: 1 }}>
+              Biblioteca
+            </span>
+            <span style={{ fontWeight: 700, fontSize: '1.1rem', letterSpacing: '-0.02em', background: 'linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', lineHeight: 1.1 }}>
+              Ruta Literaria
+            </span>
+          </div>
+        </div>
+        <span style={{ fontSize: '0.7rem', color: 'var(--primary)', fontWeight: 600, letterSpacing: '0.02em', paddingLeft: '32px', marginTop: '2px' }}>
+          El camino del libro
         </span>
       </div>
 
