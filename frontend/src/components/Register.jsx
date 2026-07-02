@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { User, Mail, Lock, UserPlus, ArrowLeft, AlertCircle } from 'lucide-react';
+import { User, Mail, Lock, UserPlus, ArrowLeft, AlertCircle, Smile, CheckCircle2 } from 'lucide-react';
 import { useToast } from '../App';
 import api from '../services/api';
+import FaceCaptureModal from './FaceCaptureModal';
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -13,6 +14,8 @@ export default function Register() {
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const [faceModalOpen, setFaceModalOpen] = useState(false);
+  const [faceDescriptor, setFaceDescriptor] = useState(null);
 
   const { addToast } = useToast();
   const navigate = useNavigate();
@@ -59,7 +62,7 @@ export default function Register() {
 
     setLoading(true);
     try {
-      const response = await api.post('/auth/register', formData);
+      const response = await api.post('/auth/register', { ...formData, faceDescriptor });
       addToast(response.data.message, 'success');
       navigate('/');
     } catch (err) {
@@ -205,6 +208,30 @@ export default function Register() {
             )}
           </div>
 
+          <div className="form-group" style={{ marginBottom: '1.5rem' }}>
+            <label className="form-label">Autenticación Biométrica (Opcional)</label>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                style={{ width: 'auto', flex: 1, minWidth: '160px', padding: '0.6rem 1rem', fontSize: '0.9rem' }}
+                onClick={() => setFaceModalOpen(true)}
+              >
+                <Smile size={16} />
+                {faceDescriptor ? 'Recapturar rostro' : 'Registrar rostro'}
+              </button>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem' }}>
+                {faceDescriptor ? (
+                  <span style={{ color: 'var(--success)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <CheckCircle2 size={16} /> Rostro registrado
+                  </span>
+                ) : (
+                  <span style={{ color: 'var(--text-muted)' }}>Rostro no configurado</span>
+                )}
+              </div>
+            </div>
+          </div>
+
           <button type="submit" className="btn btn-primary" disabled={loading}>
             {loading ? (
               <span className="spinner"></span>
@@ -217,6 +244,12 @@ export default function Register() {
           </button>
         </form>
       </div>
+
+      <FaceCaptureModal
+        isOpen={faceModalOpen}
+        onClose={() => setFaceModalOpen(false)}
+        onCaptureComplete={(descriptor) => setFaceDescriptor(descriptor)}
+      />
     </div>
   );
 }

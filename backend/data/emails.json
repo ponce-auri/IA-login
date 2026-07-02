@@ -18,5 +18,15 @@
     "actionText": "Verificar Cuenta",
     "createdAt": "2026-06-25T01:10:33.974Z",
     "updatedAt": "2026-06-25T01:10:33.974Z"
+  },
+  {
+    "_id": "qdtjmzu",
+    "to": "Roman.r@gmail.com",
+    "subject": "Verifica tu cuenta",
+    "body": "Hola Roman r, haz clic en el siguiente enlace para verificar tu cuenta.",
+    "actionUrl": "/verify/cf69fe81dd40c2a3d0b582fc0f1a43b5972d4aa1bff561a1cac6daa873d38669",
+    "actionText": "Verificar Cuenta",
+    "createdAt": "2026-07-02T04:44:30.364Z",
+    "updatedAt": "2026-07-02T04:44:30.364Z"
   }
 ]

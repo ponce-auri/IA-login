@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Mail, Lock, LogIn, UserPlus } from 'lucide-react';
+import { Mail, Lock, LogIn, UserPlus, Smile } from 'lucide-react';
 import { useAuth, useToast } from '../App';
 import api from '../services/api';
+import FaceCaptureModal from './FaceCaptureModal';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [faceModalOpen, setFaceModalOpen] = useState(false);
 
   // Al montar el Login, limpiar cualquier token residual
   useEffect(() => {
@@ -33,6 +35,21 @@ export default function Login() {
       navigate('/dashboard');
     } catch (err) {
       const errMsg = err.response?.data?.message || 'Error al iniciar sesión';
+      addToast(errMsg, 'error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleFaceCaptureComplete = async (descriptor) => {
+    setLoading(true);
+    try {
+      const response = await api.post('/auth/face-login', { faceDescriptor: descriptor, email });
+      addToast(`¡Bienvenido de nuevo, ${response.data.name}!`, 'success');
+      login(response.data);
+      navigate('/dashboard');
+    } catch (err) {
+      const errMsg = err.response?.data?.message || 'Error al iniciar sesión con reconocimiento facial';
       addToast(errMsg, 'error');
     } finally {
       setLoading(false);
@@ -124,6 +141,17 @@ export default function Login() {
               </>
             )}
           </button>
+
+          <button
+            type="button"
+            className="btn btn-secondary"
+            style={{ marginTop: '0.75rem' }}
+            disabled={loading}
+            onClick={() => setFaceModalOpen(true)}
+          >
+            <Smile size={18} />
+            Iniciar sesión con reconocimiento facial
+          </button>
         </form>
 
         <div style={{ marginTop: '2rem', textAlign: 'center', borderTop: '1px solid rgba(255, 255, 255, 0.05)', paddingTop: '1.5rem' }}>
@@ -136,6 +164,12 @@ export default function Login() {
           </Link>
         </div>
       </div>
+
+      <FaceCaptureModal
+        isOpen={faceModalOpen}
+        onClose={() => setFaceModalOpen(false)}
+        onCaptureComplete={handleFaceCaptureComplete}
+      />
     </div>
   );
 }

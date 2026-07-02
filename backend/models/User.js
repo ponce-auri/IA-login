@@ -22,6 +22,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, 'La contraseña es obligatoria'],
     },
+    faceDescriptor: {
+      type: [Number],
+      default: undefined,
+    },
     isVerified: {
       type: Boolean,
       default: false,
@@ -88,6 +92,7 @@ const wrapUserInstance = (u) => {
     name: u.name,
     email: u.email,
     password: u.password,
+    faceDescriptor: u.faceDescriptor,
     isVerified: u.isVerified,
     verificationToken: u.verificationToken,
     resetPasswordToken: u.resetPasswordToken,
@@ -112,6 +117,7 @@ const wrapUserInstance = (u) => {
         name: this.name,
         email: this.email,
         password: this.password,
+        faceDescriptor: this.faceDescriptor,
         isVerified: this.isVerified,
         verificationToken: this.verificationToken,
         resetPasswordToken: this.resetPasswordToken,
@@ -189,6 +195,38 @@ const MockUser = {
     return queryObj;
   },
 
+  find: (query = {}) => {
+    const execute = async () => {
+      const users = readUsers();
+      const filtered = users.filter(u => {
+        // Handle faceDescriptor checks ($exists etc.)
+        if (query.faceDescriptor) {
+          if (query.faceDescriptor.$exists === true) {
+            if (!u.faceDescriptor || !Array.isArray(u.faceDescriptor)) {
+              return false;
+            }
+          }
+        }
+        for (let key in query) {
+          if (key === 'faceDescriptor') continue;
+          if (u[key] !== query[key]) return false;
+        }
+        return true;
+      });
+      return filtered.map(wrapUserInstance);
+    };
+
+    const queryObj = {
+      then: function(onResolve) {
+        return execute().then(onResolve);
+      },
+      catch: function(onReject) {
+        return execute().catch(onReject);
+      }
+    };
+    return queryObj;
+  },
+
   create: async (data) => {
     const users = readUsers();
     
@@ -201,6 +239,7 @@ const MockUser = {
       name: data.name,
       email: data.email.toLowerCase(),
       password: hashedPassword,
+      faceDescriptor: data.faceDescriptor,
       isVerified: data.isVerified || false,
       verificationToken: data.verificationToken,
       resetPasswordToken: data.resetPasswordToken,
@@ -220,6 +259,7 @@ const MockUser = {
 const UserWrapper = {
   findOne: (query) => global.useMockDB ? MockUser.findOne(query) : MongooseUser.findOne(query),
   findById: (id) => global.useMockDB ? MockUser.findById(id) : MongooseUser.findById(id),
+  find: (query) => global.useMockDB ? MockUser.find(query) : MongooseUser.find(query),
   create: (data) => global.useMockDB ? MockUser.create(data) : MongooseUser.create(data),
 };
 

@@ -15,7 +15,7 @@ const generateToken = (id) => {
 // @access  Public
 const registerUser = async (req, res) => {
   try {
-    const { name, email, password, confirmPassword } = req.body;
+    const { name, email, password, confirmPassword, faceDescriptor } = req.body;
 
     // Validation
     if (!name || !email || !password || !confirmPassword) {
@@ -44,6 +44,7 @@ const registerUser = async (req, res) => {
       name,
       email,
       password,
+      faceDescriptor,
       verificationToken,
       isVerified: false,
     });
@@ -235,10 +236,85 @@ const changePassword = async (req, res) => {
   }
 };
 
+// @desc    Authenticate user using facial recognition descriptor
+// @route   POST /api/auth/face-login
+// @access  Public
+const faceLoginUser = async (req, res) => {
+  try {
+    const { faceDescriptor, email } = req.body;
+
+    if (!faceDescriptor || !Array.isArray(faceDescriptor) || faceDescriptor.length !== 128) {
+      return res.status(400).json({ message: 'Descriptor facial inválido o no detectado.' });
+    }
+
+    let matchedUser = null;
+
+    if (email) {
+      // 1:1 Matching
+      matchedUser = await User.findOne({ email });
+      if (!matchedUser) {
+        return res.status(404).json({ message: 'Usuario no encontrado.' });
+      }
+
+      if (!matchedUser.faceDescriptor || matchedUser.faceDescriptor.length !== 128) {
+        return res.status(400).json({ message: 'El usuario no tiene un rostro registrado.' });
+      }
+
+      // Calculate Euclidean Distance
+      const dist = Math.sqrt(
+        matchedUser.faceDescriptor.reduce((sum, val, idx) => sum + Math.pow(val - faceDescriptor[idx], 2), 0)
+      );
+
+      // Match threshold: 0.6 is default for face-api.js
+      if (dist > 0.6) {
+        return res.status(400).json({ message: 'El rostro no coincide con la cuenta.' });
+      }
+    } else {
+      // 1:N Matching (search all users with registered faces)
+      const users = await User.find({ faceDescriptor: { $exists: true } });
+      let minDistance = 1.0; // Initialize above threshold
+
+      for (const user of users) {
+        if (!user.faceDescriptor || user.faceDescriptor.length !== 128) continue;
+        const dist = Math.sqrt(
+          user.faceDescriptor.reduce((sum, val, idx) => sum + Math.pow(val - faceDescriptor[idx], 2), 0)
+        );
+        if (dist < minDistance) {
+          minDistance = dist;
+          matchedUser = user;
+        }
+      }
+
+      if (minDistance > 0.6 || !matchedUser) {
+        return res.status(400).json({ message: 'Rostro no reconocido o usuario sin rostro registrado.' });
+      }
+    }
+
+    // Check verification status
+    if (!matchedUser.isVerified) {
+      return res.status(400).json({ message: 'Debes verificar tu correo antes de iniciar sesión.' });
+    }
+
+    // Success: return token and user profile
+    res.json({
+      _id: matchedUser._id,
+      name: matchedUser.name,
+      email: matchedUser.email,
+      createdAt: matchedUser.createdAt,
+      isVerified: matchedUser.isVerified,
+      token: generateToken(matchedUser._id),
+    });
+  } catch (error) {
+    console.error('Error en faceLoginUser:', error);
+    res.status(500).json({ message: 'Error en el servidor al realizar el inicio de sesión facial.' });
+  }
+};
+
 module.exports = {
   registerUser,
   verifyUser,
   loginUser,
+  faceLoginUser,
   getUserProfile,
   updateUserProfile,
   changePassword,

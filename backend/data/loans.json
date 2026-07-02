@@ -15,8 +15,9 @@
     "bookId": "cl5f0fn",
     "loanDate": "2026-06-25T01:06:32.209Z",
     "dueDate": "2026-07-09T01:06:32.209Z",
-    "status": "Prestado",
+    "status": "Devuelto",
     "createdAt": "2026-06-25T01:06:32.211Z",
-    "updatedAt": "2026-06-25T01:06:32.211Z"
+    "updatedAt": "2026-07-02T04:46:03.770Z",
+    "returnDate": "2026-07-02T04:46:03.768Z"
   }
 ]
